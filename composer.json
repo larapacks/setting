@@ -14,7 +14,7 @@
   },
   "autoload": {
     "files": [
-      "helpers.php"
+      "src/helpers.php"
     ],
     "psr-4": {
       "Larapacks\\Setting\\": "src/"
