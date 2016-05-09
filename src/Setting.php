@@ -50,9 +50,6 @@ class Setting implements SettingContract
 
         $saved = $model->save();
 
-        // Clear current user.
-        $this->user();
-
         return $saved;
     }
 
@@ -65,9 +62,6 @@ class Setting implements SettingContract
             'key'       => $key,
             'user_id'   => $this->getUserIdentifier(),
         ])->first();
-
-        // Clear current user.
-        $this->user();
 
         return $model;
     }

@@ -1,6 +1,6 @@
 {
   "name": "larapacks/setting",
-  "description": "Database Configuration and Settings for Laravel",
+  "description": "Persistent Laravel configuration settings.",
   "keywords": ["setting", "settings", "configuration"],
   "license": "MIT",
   "type": "project",

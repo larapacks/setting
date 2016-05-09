@@ -1,6 +1,6 @@
 # Setting
 
-An easy, persistent database configuration
+
 
 ## Installation
 

@@ -64,10 +64,10 @@ class SettingTest extends TestCase
 
         Setting::user($user)->set('key', 'user');
 
-        Setting::set('key', 'value');
+        Setting::user(null)->set('key', 'value');
 
         $this->assertEquals('user', Setting::user($user)->get('key')->value);
-        $this->assertEquals('value', Setting::get('key')->value);
+        $this->assertEquals('value', Setting::user(null)->get('key')->value);
         $this->assertEquals(2, Setting::model()->count());
     }
 
