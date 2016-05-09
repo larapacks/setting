@@ -1,0 +1,34 @@
+{
+  "name": "larapacks/setting",
+  "description": "Database Configuration and Settings for Laravel",
+  "keywords": ["setting", "settings", "configuration"],
+  "license": "MIT",
+  "type": "project",
+  "require": {
+    "php": ">=5.5.9",
+    "illuminate/database": "~5.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.8",
+    "orchestra/testbench": "~3.2"
+  },
+  "autoload": {
+    "files": [
+      "helpers.php"
+    ],
+    "psr-4": {
+      "Larapacks\\Setting\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Larapacks\\Setting\\Tests\\": "tests/"
+    },
+    "classmap": [
+      "tests/TestCase.php"
+    ]
+  },
+  "config": {
+    "preferred-install": "dist"
+  }
+}
