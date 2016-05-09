@@ -14,14 +14,7 @@ class TestCase extends BaseTestCase
     public function setUp()
     {
         parent::setUp();
-
-        // Create the users table for testing
-        Schema::create('users', function ($table) {
-            $table->increments('id');
-            $table->timestamps();
-            $table->string('name');
-        });
-
+        
         $this->artisan('migrate', [
             '--realpath' => realpath(__DIR__.'/../src/Migrations'),
         ]);
