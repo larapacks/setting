@@ -23,17 +23,6 @@ class SettingTest extends TestCase
         ]);
     }
 
-    public function test_with_description()
-    {
-        Setting::set('key', 'value', 'description');
-
-        $this->seeInDatabase('settings', [
-            'key'   => 'key',
-            'value' => 'value',
-            'description' => 'description',
-        ]);
-    }
-
     public function test_set_update()
     {
         Setting::set('key', 'value');
@@ -55,10 +44,26 @@ class SettingTest extends TestCase
     {
         $this->test_set();
 
-        $setting = Setting::get('key');
+        $this->assertEquals('value', Setting::get('key'));
+    }
 
-        $this->assertInstanceOf(Model::class, $setting);
-        $this->assertEquals('value', $setting->value);
-        $this->assertEquals('key', $setting->key);
+    public function test_get_default()
+    {
+        $this->assertEquals('testing', Setting::get('non-existant', 'testing'));
+    }
+
+    public function test_find()
+    {
+        $this->test_set();
+
+        $this->assertInstanceOf(Model::class, Setting::find('key'));
+        $this->assertNull(Setting::find('test'));
+    }
+
+    public function test_has()
+    {
+        $this->test_set();
+
+        $this->assertTrue(Setting::has('key'));
     }
 }

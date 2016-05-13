@@ -2,7 +2,6 @@
 
 namespace Larapacks\Setting\Tests;
 
-use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Larapacks\Setting\SettingServiceProvider;
 
@@ -35,10 +34,9 @@ class TestCase extends BaseTestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        // Setup default database to use sqlite :memory:
-        $app['config']->set('database.default', 'testbench');
+        $app['config']->set('database.default', 'testing');
 
-        $app['config']->set('database.connections.testbench', [
+        $app['config']->set('database.connections.testing', [
             'driver'   => 'sqlite',
             'database' => ':memory:',
             'prefix'   => '',
