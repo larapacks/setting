@@ -2,7 +2,6 @@
 
 namespace Larapacks\Setting\Contracts;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
 interface Setting
@@ -39,13 +38,4 @@ interface Setting
      * @return Model
      */
     public function model();
-
-    /**
-     * Sets the current user for setting and retrieving settings.
-     *
-     * @param Authenticatable $user
-     *
-     * @return $this
-     */
-    public function user(Authenticatable $user);
 }
