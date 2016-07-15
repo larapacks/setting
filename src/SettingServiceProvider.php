@@ -39,7 +39,7 @@ class SettingServiceProvider extends ServiceProvider
         $this->app->bind(SettingContract::class, function () {
             $model = config('setting.model');
 
-            return new Setting(new $model);
+            return new Setting(new $model());
         });
     }
 }
