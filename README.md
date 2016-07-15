@@ -125,6 +125,47 @@ if (Setting::has('key')) {
 }
 ```
 
+Flipping a boolean setting:
+
+```php
+Setting::set('notifications', true);
+
+// Disable notifications.
+Setting::flip('notifications');
+
+dd(Setting::get('notifications')); // Returns false.
+
+// Enable notifications.
+Setting::flip('notifications');
+
+dd(Setting::get('notifications')); // Returns true.
+
+// Default flip setting:
+Setting::flip('new-key');
+
+dd(Setting::get('new-key')); // Retuns true.
+```
+
+Enabling a boolean setting:
+
+```php
+Setting::set('notifications', false);
+
+Setting::enable('notifications');
+
+dd(Setting::get('notifications')); // Returns true.
+```
+
+Disabling a boolean setting:
+
+```php
+Setting::set('notifications', true);
+
+Setting::disable('notifications');
+
+dd(Setting::get('notifications')); // Returns false.
+```
+
 ## Using your own model
 
 To use your own model, change the `model` configuration option in your `config/settings.php` file.
