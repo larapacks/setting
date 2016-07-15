@@ -11,6 +11,6 @@ return [
     |
     */
 
-    'model' => \Larapacks\Setting\Models\Setting::class,
+    'model' => Larapacks\Setting\Models\Setting::class,
 
 ];
