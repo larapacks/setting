@@ -19,7 +19,7 @@ class SettingTest extends TestCase
 
         $this->seeInDatabase('settings', [
             'key'   => 'key',
-            'value' => 'value',
+            'value' => serialize('value'),
         ]);
     }
 
@@ -31,12 +31,12 @@ class SettingTest extends TestCase
 
         $this->seeInDatabase('settings', [
             'key'   => 'key',
-            'value' => 'updated',
+            'value' => serialize('updated'),
         ]);
 
         $this->dontSeeInDatabase('settings', [
             'key'   => 'key',
-            'value' => 'value',
+            'value' => serialize('value'),
         ]);
     }
 
@@ -90,5 +90,12 @@ class SettingTest extends TestCase
     public function test_inject()
     {
         $this->assertInstanceOf(SettingContract::class, app(SettingContract::class));
+    }
+
+    public function test_serialization()
+    {
+        setting()->set('boolean', true);
+
+        $this->assertTrue(setting()->get('boolean'));
     }
 }
