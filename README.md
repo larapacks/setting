@@ -124,3 +124,20 @@ if (Setting::has('key')) {
     // The setting exists.
 }
 ```
+
+## Using your own model
+
+To use your own model, change the `model` configuration option in your `config/settings.php` file.
+
+When you create your own model, be sure to include the trait: `Larapacks\Setting\Traits\SettingTrait`:
+
+```php
+namespace App;
+
+use Larapacks\Setting\Traits\SettingTrait;
+
+class Setting extends Model
+{
+    use SettingTrait;
+}
+```
