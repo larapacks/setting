@@ -8,6 +8,8 @@ use Larapacks\Setting\Contracts\Setting as SettingContract;
 class Setting implements SettingContract
 {
     /**
+     * The Setting model.
+     *
      * @var Model
      */
     protected $model;
@@ -51,12 +53,16 @@ class Setting implements SettingContract
      */
     public function set($key, $value = null)
     {
+        if (!is_string($key)) {
+            throw new \InvalidArgumentException("Key must be a string.");
+        }
+
         $model = ($this->find($key) ?: $this->model->newInstance());
 
         $model->key = $key;
         $model->value = $value;
 
-        $model->save();
+        return $model->save();
     }
 
     /**
@@ -64,7 +70,7 @@ class Setting implements SettingContract
      */
     public function find($key)
     {
-        return $this->model()->where(['key' => $key])->first();
+        return $this->model()->whereKey($key)->first();
     }
 
     /**
