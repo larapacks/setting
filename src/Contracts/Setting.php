@@ -35,12 +35,10 @@ interface Setting
     /**
      * Sets the specified key to the specified value.
      *
-     * @param int|string $key
-     * @param mixed|null $value
+     * @param mixed $key
+     * @param mixed $value
      *
-     * @return bool
-     *
-     * @throws \InvalidArgumentException
+     * @return void
      */
     public function set($key, $value = null);
 
