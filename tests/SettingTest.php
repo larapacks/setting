@@ -98,4 +98,35 @@ class SettingTest extends TestCase
 
         $this->assertTrue(setting()->get('boolean'));
     }
+
+    public function test_flip()
+    {
+        setting()->set('boolean', true);
+
+        setting()->flip('boolean');
+
+        $this->assertFalse(setting()->get('boolean'));
+
+        setting()->flip('boolean');
+
+        $this->assertTrue(setting()->get('boolean'));
+
+        setting()->flip('new-key');
+
+        $this->assertTrue(setting()->get('new-key'));
+    }
+
+    public function test_enable()
+    {
+        setting()->enable('new-key');
+
+        $this->assertTrue(setting()->get('new-key'));
+    }
+
+    public function test_disable()
+    {
+        setting()->disable('new-key');
+
+        $this->assertFalse(setting()->get('new-key'));
+    }
 }
