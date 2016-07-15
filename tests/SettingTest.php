@@ -86,4 +86,9 @@ class SettingTest extends TestCase
 
         $this->assertEquals('value', setting()->get('key'));
     }
+
+    public function test_inject()
+    {
+        $this->assertInstanceOf(SettingContract::class, app(SettingContract::class));
+    }
 }
