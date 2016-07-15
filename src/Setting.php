@@ -37,7 +37,7 @@ class Setting implements SettingContract
     {
         $model = $this->find($key);
 
-        return ($model ? $model->value : $default);
+        return $model ? $model->value : $default;
     }
 
     /**

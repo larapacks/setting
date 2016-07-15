@@ -2,8 +2,8 @@
 
 namespace Larapacks\Setting\Tests;
 
-use Orchestra\Testbench\TestCase as BaseTestCase;
 use Larapacks\Setting\SettingServiceProvider;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
@@ -13,7 +13,7 @@ class TestCase extends BaseTestCase
     public function setUp()
     {
         parent::setUp();
-        
+
         $this->artisan('migrate', [
             '--realpath' => realpath(__DIR__.'/../src/Migrations'),
         ]);
