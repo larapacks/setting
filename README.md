@@ -6,6 +6,10 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/larapacks/setting.svg?style=flat-square)](https://packagist.org/packages/larapacks/setting)
 [![License](https://img.shields.io/packagist/l/larapacks/setting.svg?style=flat-square)](https://packagist.org/packages/larapacks/setting)
 
+## Description
+
+Setting is a simple database key => value store for your laravel application.
+
 ## Installation
 
 Insert Authorization in your `composer.json` file:
@@ -61,6 +65,14 @@ Retrieving a value:
 $value = Setting::get('key.1');
 
 dd($value); // Returns 'value'
+```
+
+Retrieving a value or return default value if it doesn't exist:
+
+```php
+$value = Setting::get('non-existent-key', 'default');
+
+dd($value); // Returns 'default'
 ```
 
 Retrieving the Setting model for a particular key:
