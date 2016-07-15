@@ -51,18 +51,22 @@ class Setting implements SettingContract
     /**
      * {@inheritdoc}
      */
-    public function set($key, $value = null)
+    public function set($keys, $value = null)
     {
-        if (!is_string($key)) {
-            throw new \InvalidArgumentException("Key must be a string.");
+        if (is_array($keys)) {
+            // If we've been given an array, we'll assume they're a
+            // key value pair and create a setting for each.
+            array_walk($keys, function ($value, $key) {
+                $this->set($key, $value);
+            });
+        } else {
+            $model = ($this->find($keys) ?: $this->model->newInstance());
+
+            $model->key = $keys;
+            $model->value = $value;
+
+            $model->save();
         }
-
-        $model = ($this->find($key) ?: $this->model->newInstance());
-
-        $model->key = $key;
-        $model->value = $value;
-
-        return $model->save();
     }
 
     /**
