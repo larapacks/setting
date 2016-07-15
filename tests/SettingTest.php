@@ -49,7 +49,7 @@ class SettingTest extends TestCase
 
     public function test_get_default()
     {
-        $this->assertEquals('testing', Setting::get('non-existant', 'testing'));
+        $this->assertEquals('default', Setting::get('non-existent-key', 'default'));
     }
 
     public function test_find()
@@ -65,5 +65,19 @@ class SettingTest extends TestCase
         $this->test_set();
 
         $this->assertTrue(Setting::has('key'));
+    }
+
+    public function test_all()
+    {
+        $settings = [
+            'key.1' => 'value',
+            'key.2' => 'value',
+            'key.3' => 'value',
+        ];
+
+        Setting::set($settings);
+
+        $this->assertEquals($settings, Setting::all()->toArray());
+
     }
 }
