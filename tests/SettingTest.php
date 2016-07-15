@@ -3,8 +3,8 @@
 namespace Larapacks\Setting\Tests;
 
 use Illuminate\Database\Eloquent\Model;
-use Larapacks\Setting\Facades\Setting;
 use Larapacks\Setting\Contracts\Setting as SettingContract;
+use Larapacks\Setting\Facades\Setting;
 
 class SettingTest extends TestCase
 {
@@ -78,6 +78,5 @@ class SettingTest extends TestCase
         Setting::set($settings);
 
         $this->assertEquals($settings, Setting::all()->toArray());
-
     }
 }

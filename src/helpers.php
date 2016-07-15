@@ -1,6 +1,6 @@
 <?php
 
-if (! function_exists('setting')) {
+if (!function_exists('setting')) {
     /**
      * Returns the underlying Setting instance.
      *
