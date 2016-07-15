@@ -97,7 +97,7 @@ Retrieving the your configured Setting model:
 ```php
 $model = Setting::model();
 
-$setting = new $model;
+$setting = new $model();
 
 $setting->key = 'key';
 $setting->value = 'value';
