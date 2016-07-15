@@ -72,6 +72,30 @@ class Setting implements SettingContract
     /**
      * {@inheritdoc}
      */
+    public function flip($key)
+    {
+        $this->set($key, !$this->get($key));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function enable($key)
+    {
+        $this->set($key, true);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function disable($key)
+    {
+        $this->set($key, false);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function find($key)
     {
         return $this->model()->whereKey($key)->first();

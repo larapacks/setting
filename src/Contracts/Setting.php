@@ -43,6 +43,35 @@ interface Setting
     public function set($key, $value = null);
 
     /**
+     * Flips a boolean to its opposite value.
+     *
+     * This method exists for convenience.
+     *
+     * @param mixed $key
+     *
+     * @return void
+     */
+    public function flip($key);
+
+    /**
+     * Sets the specified key to true.
+     *
+     * @param mixed $key
+     *
+     * @return void
+     */
+    public function enable($key);
+
+    /**
+     * Sets the specified key to false.
+     *
+     * @param mixed $key
+     *
+     * @return void
+     */
+    public function disable($key);
+
+    /**
      * Returns an array of all settings.
      *
      * @return array
