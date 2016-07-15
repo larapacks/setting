@@ -38,7 +38,9 @@ interface Setting
      * @param int|string $key
      * @param mixed|null $value
      *
-     * @return mixed
+     * @return bool
+     *
+     * @throws \InvalidArgumentException
      */
     public function set($key, $value = null);
 
