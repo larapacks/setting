@@ -78,6 +78,12 @@ class SettingTest extends TestCase
         Setting::set($settings);
 
         $this->assertEquals($settings, Setting::all()->toArray());
+    }
 
+    public function test_helper()
+    {
+        setting()->set('key', 'value');
+
+        $this->assertEquals('value', setting()->get('key'));
     }
 }
