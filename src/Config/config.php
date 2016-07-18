@@ -23,8 +23,8 @@ return [
     | If enabled, **all** setting values are encrypted using
     | your configured applications cipher and key.
     |
-    | Encryption cannot be disabled after use, otherwise you will receive
-    | arbitrary encrypted strings that won't resemble the true value.
+    | If you disable encryption after use, you will receive the raw encrypted
+    | string for settings that have previously been encrypted.
     |
     */
 

@@ -183,3 +183,12 @@ class Setting extends Model
 }
 ```
 
+## Encryption
+
+Encryption can be enabled or disabled in the published configuration file. By default, it is enabled.
+
+Encryption is performed by laravel's included helper methods `encrypt()` and `decrypt()`. 
+
+You can enable or disable encryption at any time, however upon disabling encryption you will
+receive the raw encrypted string for settings that have previously
+been encrypted.
