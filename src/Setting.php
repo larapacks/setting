@@ -108,4 +108,17 @@ class Setting implements SettingContract
     {
         return $this->model;
     }
+
+    /**
+     * Calls non-existent methods on the underlying Setting model instance.
+     *
+     * @param string $method
+     * @param array  $parameters
+     *
+     * @return mixed
+     */
+    public function __call($method, $parameters)
+    {
+        return call_user_func_array([$this->model, $method], $parameters);
+    }
 }
