@@ -36,6 +36,9 @@ class TestCase extends BaseTestCase
     {
         $app['config']->set('database.default', 'testing');
 
+        $app['config']->set('app.cipher', 'AES-256-CBC');
+        $app['config']->set('app.key', 'SomeRandomStringWith32Characters');
+
         $app['config']->set('database.connections.testing', [
             'driver'   => 'sqlite',
             'database' => ':memory:',
