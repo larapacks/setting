@@ -11,7 +11,7 @@ trait SettingTrait
      */
     public function setValueAttribute($value)
     {
-        $this->attributes['value'] = serialize($value);
+        $this->attributes['value'] = encrypt(serialize($value));
     }
 
     /**
@@ -21,6 +21,6 @@ trait SettingTrait
      */
     public function getValueAttribute()
     {
-        return unserialize($this->attributes['value']);
+        return unserialize(decrypt($this->attributes['value']));
     }
 }
