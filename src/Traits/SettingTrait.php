@@ -13,7 +13,7 @@ trait SettingTrait
     {
         $value = serialize($value);
 
-        $this->attributes['value'] = ($this->encryptionIsEnabled() ? encrypt($value) : $value);
+        $this->attributes['value'] = ($this->encryptionIsEnabled() ? $this->encrypt($value) : $value);
     }
 
     /**
@@ -25,9 +25,33 @@ trait SettingTrait
     {
         $actual = $this->attributes['value'];
 
-        $value = ($this->encryptionIsEnabled() ? decrypt($actual) : $actual);
+        $value = ($this->encryptionIsEnabled() ? $this->decrypt($actual) : $actual);
 
         return unserialize($value);
+    }
+
+    /**
+     * Encrypts the specified value.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    protected function encrypt($value)
+    {
+        return encrypt($value);
+    }
+
+    /**
+     * Decrypts the specified value.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    protected function decrypt($value)
+    {
+        return decrypt($value);
     }
 
     /**
