@@ -133,6 +133,17 @@ class SettingTest extends TestCase
         $this->assertEquals('value', unserialize(decrypt($setting->getOriginal('value'))));
     }
 
+    public function test_decrypt_on_invalid_value()
+    {
+        config()->set('setting.encryption', false);
+
+        setting()->set('key', 'value');
+
+        config()->set('setting.encryption', true);
+
+        $this->assertEquals('value', setting()->first()->value);
+    }
+
     public function test_calling_on_model()
     {
         setting()->set('key', 'value');

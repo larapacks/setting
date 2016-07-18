@@ -2,6 +2,8 @@
 
 namespace Larapacks\Setting\Traits;
 
+use Illuminate\Contracts\Encryption\DecryptException;
+
 trait SettingTrait
 {
     /**
@@ -51,7 +53,13 @@ trait SettingTrait
      */
     protected function decrypt($value)
     {
-        return decrypt($value);
+        try {
+            return decrypt($value);
+        } catch (DecryptException $e) {
+            // If decryption fails, we'll just return the
+            // plain value. It must not be encrypted.
+            return $value;
+        }
     }
 
     /**
