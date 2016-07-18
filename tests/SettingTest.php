@@ -23,15 +23,6 @@ class SettingTest extends TestCase
         $this->assertEquals('value', $setting->value);
     }
 
-    public function test_is_encrypted()
-    {
-        $this->test_set();
-
-        $setting = setting()->model()->first();
-
-        $this->assertEquals('value', unserialize(decrypt($setting->getOriginal('value'))));
-    }
-
     public function test_set_update()
     {
         setting()->set('key', 'value');
@@ -131,6 +122,15 @@ class SettingTest extends TestCase
         setting()->disable('new-key');
 
         $this->assertFalse(setting()->get('new-key'));
+    }
+
+    public function test_is_encrypted()
+    {
+        $this->test_set();
+
+        $setting = setting()->model()->first();
+
+        $this->assertEquals('value', unserialize(decrypt($setting->getOriginal('value'))));
     }
 
     public function test_calling_on_model()

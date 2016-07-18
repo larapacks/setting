@@ -11,7 +11,9 @@ trait SettingTrait
      */
     public function setValueAttribute($value)
     {
-        $this->attributes['value'] = encrypt(serialize($value));
+        $value = serialize($value);
+
+        $this->attributes['value'] = ($this->encryptionIsEnabled() ? encrypt($value) : $value);
     }
 
     /**
@@ -21,6 +23,20 @@ trait SettingTrait
      */
     public function getValueAttribute()
     {
-        return unserialize(decrypt($this->attributes['value']));
+        $actual = $this->attributes['value'];
+
+        $value = ($this->encryptionIsEnabled() ? decrypt($actual) : $actual);
+
+        return unserialize($value);
+    }
+
+    /**
+     * Returns the setting encryption configuration option.
+     *
+     * @return bool
+     */
+    protected function encryptionIsEnabled()
+    {
+        return config('setting.encryption', true);
     }
 }
