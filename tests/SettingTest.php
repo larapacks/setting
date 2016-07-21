@@ -79,6 +79,8 @@ class SettingTest extends TestCase
         setting()->set('key', 'value');
 
         $this->assertEquals('value', setting()->get('key'));
+        $this->assertEquals('value', setting('key'));
+        $this->assertEquals('default', setting('non-existent', 'default'));
     }
 
     public function test_inject()
