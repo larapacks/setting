@@ -8,7 +8,7 @@
 
 ## Description
 
-Setting is an easy, encrypted, database key => value store for your laravel application.
+Setting is an easy, encrypted & cached, database key => value store for your laravel application.
 
 ## Installation
 
