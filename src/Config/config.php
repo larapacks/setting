@@ -39,6 +39,6 @@ return [
     |
     */
 
-    'cache' => 60
+    'cache' => 60,
 
 ];
