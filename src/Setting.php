@@ -2,8 +2,8 @@
 
 namespace Larapacks\Setting;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Larapacks\Setting\Contracts\Setting as SettingContract;
 
 class Setting implements SettingContract
