@@ -68,7 +68,6 @@ class Setting implements SettingContract
 
             $model->save();
 
-            // Re-cache the model in case of changes.
             $this->cache($keys, function () use ($model) {
                 return $model;
             });
@@ -104,7 +103,7 @@ class Setting implements SettingContract
      */
     public function find($key)
     {
-        return $this->cache("setting.{$key}", function () use ($key) {
+        return $this->cache($key, function () use ($key) {
             return $this->model()->whereKey($key)->first();
         });
     }
@@ -140,6 +139,6 @@ class Setting implements SettingContract
      */
     protected function cache($key, $value)
     {
-        return Cache::remember($key, config('setting.cache', 60), $value);
+        return Cache::remember("setting.{$key}", config('setting.cache', 60), $value);
     }
 }
