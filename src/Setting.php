@@ -2,6 +2,7 @@
 
 namespace Larapacks\Setting;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Larapacks\Setting\Contracts\Setting as SettingContract;
 
@@ -66,6 +67,11 @@ class Setting implements SettingContract
             $model->value = $value;
 
             $model->save();
+
+            // Re-cache the model in case of changes.
+            $this->cache($keys, function () use ($model) {
+                return $model;
+            });
         }
     }
 
@@ -98,7 +104,9 @@ class Setting implements SettingContract
      */
     public function find($key)
     {
-        return $this->model()->whereKey($key)->first();
+        return $this->cache("setting.{$key}", function () use ($key) {
+            return $this->model()->whereKey($key)->first();
+        });
     }
 
     /**
@@ -120,5 +128,18 @@ class Setting implements SettingContract
     public function __call($method, $parameters)
     {
         return call_user_func_array([$this->model, $method], $parameters);
+    }
+
+    /**
+     * Caches the specified key / value.
+     *
+     * @param mixed $key
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    protected function cache($key, $value)
+    {
+        return Cache::remember($key, config('setting.cache', 60), $value);
     }
 }

@@ -152,4 +152,27 @@ class SettingTest extends TestCase
 
         $this->assertTrue(setting()->first()->exists);
     }
+
+    public function test_cache()
+    {
+        setting()->set('key', 'value');
+
+        // Retrieve the value once to cache it.
+        setting()->get('key');
+
+        setting()->model()->whereKey('key')->delete();
+
+        // Test that the value is cached when the model doesn't exist.
+        $this->assertEquals('value', setting()->get('key'));
+        $this->assertNull(setting()->model()->first());
+    }
+
+    public function test_cache_is_cleared_on_set()
+    {
+        setting()->set('key', 'value');
+
+        setting()->set('key', 'new-value');
+
+        $this->assertEquals('new-value', setting()->get('key'));
+    }
 }
