@@ -43,6 +43,8 @@ Then run `php artisan migrate`.
 
 ## Usage
 
+> **Note**: All usage below can be accessed via the helper method `setting()`.
+
 Setting a value:
 
 ```php
