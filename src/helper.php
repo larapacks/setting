@@ -7,7 +7,7 @@ if (!function_exists('setting')) {
      * @param mixed $key
      * @param mixed $default
      *
-     * @return \Larapacks\Setting\Setting
+     * @return \Larapacks\Setting\Setting|mixed
      */
     function setting($key = null, $default = null)
     {
