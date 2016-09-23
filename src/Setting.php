@@ -2,8 +2,9 @@
 
 namespace Larapacks\Setting;
 
-use Illuminate\Database\Eloquent\Model;
+use Closure;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Larapacks\Setting\Contracts\Setting as SettingContract;
 
 class Setting implements SettingContract
@@ -70,7 +71,7 @@ class Setting implements SettingContract
 
             $this->cache($keys, function () use ($model) {
                 return $model;
-            });
+            }, $forget = true);
         }
     }
 
@@ -132,13 +133,20 @@ class Setting implements SettingContract
     /**
      * Caches the specified key / value.
      *
-     * @param mixed $key
-     * @param mixed $value
+     * @param mixed   $key
+     * @param Closure $value
+     * @param bool    $forget
      *
      * @return mixed
      */
-    protected function cache($key, $value)
+    protected function cache($key, Closure $value, $forget = false)
     {
-        return Cache::remember("setting.{$key}", config('setting.cache', 60), $value);
+        $key = "setting.{$key}";
+
+        if ($forget) {
+            Cache::forget($key);
+        }
+
+        return Cache::remember($key, config('setting.cache', 60), $value);
     }
 }

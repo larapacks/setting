@@ -2,6 +2,7 @@
 
 namespace Larapacks\Setting\Tests;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Larapacks\Setting\Contracts\Setting as SettingContract;
 
@@ -174,5 +175,6 @@ class SettingTest extends TestCase
         setting()->set('key', 'new-value');
 
         $this->assertEquals('new-value', setting()->get('key'));
+        $this->assertEquals('new-value', Cache::get('setting.key')->value);
     }
 }
