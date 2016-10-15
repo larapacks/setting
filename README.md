@@ -12,7 +12,7 @@ Setting is an easy, encrypted & cached, database key => value store for your lar
 
 ## Installation
 
-Insert Authorization in your `composer.json` file:
+Insert Setting in your `composer.json` file:
 
 ```json
 "larapacks/setting": "1.0.*"
