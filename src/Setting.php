@@ -106,7 +106,7 @@ class Setting implements SettingContract
     public function find($key)
     {
         return $this->cache($key, function () use ($key) {
-            return $this->model()->whereKey($key)->first();
+            return $this->model()->where('key',$key)->first();
         });
     }
 
