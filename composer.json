@@ -6,7 +6,7 @@
   "type": "project",
   "require": {
     "php": ">=5.5.9",
-    "illuminate/database": "~5.0"
+    "illuminate/database": "5.*"
   },
   "require-dev": {
     "orchestra/testbench": "~3.0",
