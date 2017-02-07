@@ -30,9 +30,7 @@ class SettingTest extends TestCase
 
         setting()->set('key', 'updated');
 
-        $this->seeInDatabase('settings', [
-            'key'   => 'key',
-        ]);
+        $this->assertEquals('updated', setting('key'));
     }
 
     public function test_get()
