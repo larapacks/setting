@@ -14,9 +14,9 @@ class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->artisan('migrate', [
-            '--realpath' => realpath(__DIR__.'/../src/Migrations'),
-        ]);
+        $this->artisan('vendor:publish');
+
+        $this->artisan('migrate');
     }
 
     /**
