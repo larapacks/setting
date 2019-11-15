@@ -10,6 +10,11 @@
 
 Setting is an easy, encrypted & cached, database key => value store for your laravel application.
 
+## Requirements
+
+- PHP >= 7.2
+- Laravel >= 6.0
+
 ## Installation
 
 Run the following command:
