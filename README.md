@@ -12,26 +12,13 @@ Setting is an easy, encrypted & cached, database key => value store for your lar
 
 ## Installation
 
-Insert Setting in your `composer.json` file:
+Run the following command:
 
-```json
-"larapacks/setting": "1.0.*"
+```bash
+composer require larapacks/setting
 ```
 
-Then run `composer update`.
-
-Insert the service provider in your `config/app.php` file:
-
-```php
-Larapacks\Setting\SettingServiceProvider::class,
-```
-
-Insert the facade in your `aliases` array in your `config/app.php` file
-(only if you're going to utilize it):
-
-```php
-'Setting' => Larapacks\Setting\Facades\Setting::class
-```
+> **Note**: The service provider and `Setting` facade are registered automatically.
 
 Once that's complete, publish the migration and configuration file using:
 
