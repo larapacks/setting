@@ -10,11 +10,11 @@ class TestCase extends BaseTestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
-        $this->artisan('vendor:publish');
+        $this->artisan('vendor:publish', ['--all' => true]);
 
         $this->artisan('migrate');
     }
