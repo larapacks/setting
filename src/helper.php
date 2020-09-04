@@ -1,6 +1,8 @@
 <?php
 
-if (!function_exists('setting')) {
+use Larapacks\Setting\Contracts\Setting;
+
+if (! function_exists('setting')) {
     /**
      * Returns the underlying Setting instance.
      *
@@ -11,7 +13,7 @@ if (!function_exists('setting')) {
      */
     function setting($key = null, $default = null)
     {
-        $setting = \Larapacks\Setting\Facades\Setting::getFacadeRoot();
+        $setting = app(Setting::class);
 
         if (is_null($key)) {
             return $setting;

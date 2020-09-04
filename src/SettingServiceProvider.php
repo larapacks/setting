@@ -12,23 +12,14 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // The configuration path.
-        $config = __DIR__.'/Config/config.php';
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../migrations/' => database_path('migrations'),
+                __DIR__.'/../config/config.php' => config_path('ldap.php'),
+            ]);
+        }
 
-        // The migrations path.
-        $migrations = __DIR__.'/Migrations/';
-
-        // The setting tag.
-        $tag = 'setting';
-
-        // Set the configuration and migrations to publishable.
-        $this->publishes([
-            $migrations => database_path('migrations'),
-            $config     => config_path('setting.php'),
-        ], $tag);
-
-        // Merge the configuration.
-        $this->mergeConfigFrom($config, 'setting');
+        $this->mergeConfigFrom( __DIR__.'/../config/config.php', 'setting');
     }
 
     /**
@@ -36,7 +27,7 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(SettingContract::class, function () {
+        $this->app->singleton(SettingContract::class, function () {
             $model = config('setting.model');
 
             return new Setting(new $model());

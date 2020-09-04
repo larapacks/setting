@@ -56,24 +56,23 @@ class Setting implements SettingContract
     public function set($keys, $value = null)
     {
         if (is_array($keys)) {
-            // If we've been given an array, we'll assume they're a
-            // key value pair and create a setting for each.
-            array_walk($keys, function ($value, $key) {
+            collect($keys)->each(function ($value, $key) {
                 $this->set($key, $value);
             });
-        } else {
-            // We'll try to locate the setting before creating a new instance.
-            $model = $this->find($keys) ?: $this->model->newInstance();
 
-            $model->key = $keys;
-            $model->value = $value;
-
-            $model->save();
-
-            $this->cache($keys, function () use ($model) {
-                return $model;
-            }, $forget = true);
+            return;
         }
+
+        $model = $this->find($keys) ?: $this->model->newInstance();
+
+        $model->key = $keys;
+        $model->value = $value;
+
+        $model->save();
+
+        $this->cache($keys, function () use ($model) {
+            return $model;
+        }, $forget = true);
     }
 
     /**
@@ -132,7 +131,7 @@ class Setting implements SettingContract
     }
 
     /**
-     * Caches the specified key / value.
+     * Caches and returns the settings value.
      *
      * @param mixed   $key
      * @param Closure $value

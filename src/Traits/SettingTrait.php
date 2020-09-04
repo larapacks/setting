@@ -27,7 +27,7 @@ trait SettingTrait
     {
         $actual = $this->attributes['value'];
 
-        $value = ($this->encryptionIsEnabled() ? $this->decrypt($actual) : $actual);
+        $value = $this->encryptionIsEnabled() ? $this->decrypt($actual) : $actual;
 
         return unserialize($value);
     }
