@@ -15,10 +15,15 @@ class SettingServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../migrations/' => database_path('migrations'),
-                __DIR__.'/../config/config.php' => config_path('ldap.php'),
-            ]);
+            $publish = [__DIR__.'/../config/config.php' => config_path('ldap.php')];
+
+            if (! class_exists('CreateSettingsTable')) {
+                $publish[] = [
+                    __DIR__.'/../database/migrations/create_settings_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_settings_table.php')
+                ];
+            }
+
+            $this->publishes($publish);
         }
 
         $this->mergeConfigFrom( __DIR__.'/../config/config.php', 'setting');
