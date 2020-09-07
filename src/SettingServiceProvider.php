@@ -8,7 +8,9 @@ use Larapacks\Setting\Contracts\Setting as SettingContract;
 class SettingServiceProvider extends ServiceProvider
 {
     /**
-     * {@inheritdoc}
+     * Apply the 'settings' configuration.
+     *
+     * @return void
      */
     public function boot()
     {
@@ -23,7 +25,9 @@ class SettingServiceProvider extends ServiceProvider
     }
 
     /**
-     * {@inheritdoc}
+     * Register the settings instance.
+     *
+     * @return void
      */
     public function register()
     {

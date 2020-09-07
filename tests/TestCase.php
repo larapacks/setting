@@ -14,6 +14,8 @@ class TestCase extends BaseTestCase
     {
         parent::setUp();
 
+        $this->artisan('vendor:publish', ['--provider' => SettingServiceProvider::class]);
+
         $this->artisan('migrate');
     }
 
