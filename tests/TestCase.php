@@ -2,21 +2,22 @@
 
 namespace Larapacks\Setting\Tests;
 
+use CreateSettingsTable;
 use Larapacks\Setting\SettingServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TestCase extends BaseTestCase
 {
-    /**
-     * {@inheritdoc}
-     */
+    use RefreshDatabase;
+
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->artisan('vendor:publish', ['--provider' => SettingServiceProvider::class]);
+        include_once __DIR__.'/../database/migrations/create_settings_table.php.stub';
 
-        $this->artisan('migrate');
+        (new CreateSettingsTable())->up();
     }
 
     /**
