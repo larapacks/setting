@@ -63,7 +63,7 @@ class Setting implements SettingContract
             return;
         }
 
-        $model = $this->find($keys) ?: $this->model->newInstance();
+        $model = $this->find($keys) ?? $this->model->newInstance();
 
         $model->key = $model->key ?? $keys;
         $model->value = $value;
