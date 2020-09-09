@@ -5,10 +5,13 @@ namespace Larapacks\Setting;
 use Closure;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Traits\ForwardsCalls;
 use Larapacks\Setting\Contracts\Setting as SettingContract;
 
 class Setting implements SettingContract
 {
+    use ForwardsCalls;
+
     /**
      * The Setting model.
      *
@@ -63,9 +66,8 @@ class Setting implements SettingContract
             return;
         }
 
-        $model = $this->find($keys) ?? $this->model->newInstance();
+        $model = $this->find($keys) ?? $this->make($keys);
 
-        $model->key = $model->key ?? $keys;
         $model->value = $value;
 
         $model->save();
@@ -73,6 +75,22 @@ class Setting implements SettingContract
         $this->cache($keys, function () use ($model) {
             return $model;
         }, $forget = true);
+    }
+
+    /**
+     * Make a new setting model instance with the given key.
+     *
+     * @param string $key
+     *
+     * @return Model
+     */
+    protected function make($key)
+    {
+        $model = $this->model->newInstance();
+
+        $model->key = $key;
+
+        return $model;
     }
 
     /**
@@ -97,6 +115,16 @@ class Setting implements SettingContract
     public function disable($key)
     {
         $this->set($key, false);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete($key)
+    {
+        $this->cache($key, function () use ($key) {
+            optional($this->find($key))->delete();
+        }, $forget = true);
     }
 
     /**
@@ -127,7 +155,7 @@ class Setting implements SettingContract
      */
     public function __call($method, $parameters)
     {
-        return call_user_func_array([$this->model, $method], $parameters);
+        return $this->forwardCallTo($this->model, $method, $parameters);
     }
 
     /**

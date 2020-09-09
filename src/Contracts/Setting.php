@@ -72,6 +72,15 @@ interface Setting
     public function disable($key);
 
     /**
+     * Delete the specified key.
+     *
+     * @param string $key
+     *
+     * @return void
+     */
+    public function delete($key);
+
+    /**
      * Returns an array of all settings.
      *
      * @return array

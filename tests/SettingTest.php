@@ -125,6 +125,17 @@ class SettingTest extends TestCase
         $this->assertFalse(setting()->get('new-key'));
     }
 
+    public function test_delete()
+    {
+        setting()->set('key', 'value');
+
+        $this->assertEquals('value', setting('key'));
+
+        setting()->delete('key');
+
+        $this->assertNull(setting('key'));
+    }
+
     public function test_is_encrypted()
     {
         $this->test_set();
@@ -134,7 +145,7 @@ class SettingTest extends TestCase
         $this->assertEquals('value', unserialize(decrypt($setting->getAttributes()['value'])));
     }
 
-    public function test_decrypt_on_invalid_value()
+    public function test_decrypt_on_invalid_value_returns_raw_value()
     {
         config()->set('setting.encryption', false);
 
@@ -145,11 +156,14 @@ class SettingTest extends TestCase
         $this->assertEquals('value', setting()->first()->value);
     }
 
-    public function test_calling_on_model()
+    public function test_undefined_method_calls_are_forwarded_to_model()
     {
         setting()->set('key', 'value');
 
-        $this->assertTrue(setting()->first()->exists);
+        $setting = setting()->first();
+
+        $this->assertTrue($setting->exists);
+        $this->assertEquals('value', $setting->value);
     }
 
     public function test_cache()
