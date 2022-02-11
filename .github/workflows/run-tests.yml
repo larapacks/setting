@@ -61,6 +61,8 @@ jobs:
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
 
             - name: Install dependencies
               run: |
