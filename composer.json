@@ -1,44 +1,48 @@
 {
-  "name": "larapacks/setting",
-  "description": "Persistent Laravel configuration settings.",
-  "keywords": ["setting", "settings", "configuration"],
-  "license": "MIT",
-  "type": "project",
-  "require": {
-    "php": ">=7.2",
-    "illuminate/database": "^6.0|^7.0|^8.0|^9.0"
-  },
-  "require-dev": {
-    "orchestra/testbench": "~4.0|~5.0",
-    "phpunit/phpunit": "~8.0|~9.0"
-  },
-  "autoload": {
-    "files": [
-      "src/helper.php"
+    "name": "larapacks/setting",
+    "description": "Persistent Laravel configuration settings.",
+    "keywords": [
+        "setting",
+        "settings",
+        "configuration"
     ],
-    "psr-4": {
-      "Larapacks\\Setting\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Larapacks\\Setting\\Tests\\": "tests/"
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=7.2",
+        "illuminate/database": "^6.0|^7.0|^8.0|^9.0"
     },
-    "classmap": [
-      "tests/TestCase.php"
-    ]
-  },
-  "config": {
-    "preferred-install": "dist"
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Larapacks\\Setting\\SettingServiceProvider"
-      ],
-      "aliases": {
-        "Setting": "Larapacks\\Setting\\Facades\\Setting"
-      }
+    "require-dev": {
+        "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0",
+        "phpunit/phpunit": "^8.0|^9.0"
+    },
+    "autoload": {
+        "files": [
+            "src/helper.php"
+        ],
+        "psr-4": {
+            "Larapacks\\Setting\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Larapacks\\Setting\\Tests\\": "tests/"
+        },
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Larapacks\\Setting\\SettingServiceProvider"
+            ],
+            "aliases": {
+                "Setting": "Larapacks\\Setting\\Facades\\Setting"
+            }
+        }
     }
-  }
 }
