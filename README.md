@@ -1,6 +1,6 @@
 # Setting
 
-[![Build Status](https://img.shields.io/travis/larapacks/setting/master.svg?style=flat-square)](https://travis-ci.org/larapacks/setting)
+[![Build Status](https://img.shields.io/github/workflow/status/larapacks/setting/run-tests.svg?style=flat-square)](https://github.com/larapacks/setting/actions)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/larapacks/setting/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/larapacks/setting/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/larapacks/setting.svg?style=flat-square)](https://packagist.org/packages/larapacks/setting)
 [![Latest Stable Version](https://img.shields.io/packagist/v/larapacks/setting.svg?style=flat-square)](https://packagist.org/packages/larapacks/setting)
